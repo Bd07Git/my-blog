@@ -5,9 +5,10 @@ export default defineConfig({
   base: '/my-blog/',
   title: "day-day-up",
   description: "hl go go go",
-  head: [['link', { rel: 'icon', href: 'favicon.svg' }]],
+  //head: [['link', { rel: 'icon', href: 'favicon.svg' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: "/favicon.svg",
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }
