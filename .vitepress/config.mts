@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/',
+  base: '/my-blog/',
   title: "My Awesome Project",
   description: "A VitePress Site",
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
