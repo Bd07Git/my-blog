@@ -5,10 +5,15 @@ export default defineConfig({
   base: '/my-blog/',
   title: "day-day-up",
   description: "hl go go go",
-  //head: [['link', { rel: 'icon', href: 'favicon.svg' }]],
+  head: [
+    // 1. 修复图标路径（使用带 base 的绝对路径最稳妥）
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/my-blog/favicon.svg' }],
+    // 2. 显式声明视口，确保响应式
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }]
+  ],
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    logo: "/favicon.svg",
+    // 3. 修复 Logo 路径
+    logo: '/favicon.svg',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }

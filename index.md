@@ -3,15 +3,19 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "x不是y的解"
+  text: "Web Developer"
+  tagline: 光而不耀，静水流深。
+  image:
+    src: /bd.jpg
+    alt: avatar
+    class: image-src
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: vue
       link: /markdown-examples
     - theme: alt
-      text: API Examples
+      text: 其他
       link: /api-examples
 
 features:
@@ -22,4 +26,3 @@ features:
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
-

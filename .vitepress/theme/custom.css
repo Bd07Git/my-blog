@@ -1,0 +1,82 @@
+/* 1. 注册 CSS 变量，告诉浏览器它们是颜色类型，这样才能实现平滑动画 */
+@property --vp-c-brand-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #00a9a7;
+}
+
+@property --vp-c-brand-next {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0098fd;
+}
+
+/* 2. 定义彩虹动画 */
+@keyframes rainbow {
+  0% { --vp-c-brand-1: #00a9a7; --vp-c-brand-next: #0098fd; }
+  20% { --vp-c-brand-1: #0098fd; --vp-c-brand-next: #b545ff; }
+  40% { --vp-c-brand-1: #b545ff; --vp-c-brand-next: #ff5294; }
+  60% { --vp-c-brand-1: #ff5294; --vp-c-brand-next: #ffa21a; }
+  80% { --vp-c-brand-1: #ffa21a; --vp-c-brand-next: #00a9a7; }
+  100% { --vp-c-brand-1: #00a9a7; --vp-c-brand-next: #0098fd; }
+}
+
+:root {
+  /* 3. 应用动画 */
+  animation: rainbow 10s linear infinite;
+  
+  --vp-c-brand-lighter: #7bfbf8;
+  --vp-c-brand-light: #4dd1cf;
+  --vp-c-brand-dark: #008382;
+  --vp-c-brand-darker: #005e5e;
+}
+
+/* 4. 确保按钮等组件使用这些变量 */
+.vp-button.brand {
+  background-color: var(--vp-c-brand-1);
+  transition: background-color 0.5s linear;
+}
+
+/* 如果你想让文字也随之变化 */
+.name, .hero-text {
+  color: var(--vp-c-brand-1);
+  transition: color 0.5s linear;
+}
+
+/* 或者直接针对类名写样式 */
+.image-src{
+  /* 你的自定义样式 */
+  border-radius: 40px;
+  border: 3px solid var(--vp-c-brand-1);
+  transition: border-color 0.5s linear;
+}
+
+/* 针对图片容器增加背景光晕 */
+.VPHomeHero .image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 创建一个背景层实现彩虹光晕 */
+.VPHomeHero .image-bg {
+  position: absolute;
+  /* 这里的变量会随 :root 的 animation 自动变化 */
+  background-image: linear-gradient(
+    -45deg, 
+    var(--vp-c-brand-1) 30%, 
+    var(--vp-c-brand-next) 
+  );
+  filter: blur(80px); /* 模糊效果形成光晕 */
+  opacity: 0.4;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  /* 居中定位 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: background-image 0.5s linear;
+}
