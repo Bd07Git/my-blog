@@ -6,13 +6,16 @@ import MTools from './components/MTools.vue'
 import MAiNav from './components/MAiNav.vue'
 import BackToTop from './components/BackToTop.vue'
 import ClickFireworks from './components/ClickFireworks.vue'
+import PageInfo from './components/PageInfo.vue'
 
 export default {
   extends: DefaultTheme,
   Layout() {
     return h(DefaultTheme.Layout, null, {
       // 使用 layout-bottom 插槽
-      'layout-bottom': () => h('div', [h(Busuanzi), h(BackToTop), h(ClickFireworks)])
+      'layout-bottom': () => h('div', [h(Busuanzi), h(BackToTop), h(ClickFireworks)]),
+      // 在文档内容前插入页面信息
+      'doc-before': () => h(PageInfo)
     })
   },
   enhanceApp({ app }) {
@@ -22,5 +25,6 @@ export default {
     app.component('MAiNav', MAiNav)
     app.component('BackToTop', BackToTop)
     app.component('ClickFireworks', ClickFireworks)
+    app.component('PageInfo', PageInfo)
   }
 }
