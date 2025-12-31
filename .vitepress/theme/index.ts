@@ -1,6 +1,8 @@
 import DefaultTheme from 'vitepress/theme'
 import './custom.css'
-import { h } from 'vue'
+import { h, onMounted, watch, nextTick } from 'vue'
+import { useRoute } from 'vitepress'
+import mediumZoom from 'medium-zoom'
 import Busuanzi from './components/Busuanzi.vue'
 import MTools from './components/MTools.vue'
 import MAiNav from './components/MAiNav.vue'
@@ -28,5 +30,19 @@ export default {
     app.component('ClickFireworks', ClickFireworks)
     app.component('PageInfo', PageInfo)
     app.component('VueDirectory', VueDirectory)
+  },
+  setup() {
+    const route = useRoute()
+    const initZoom = () => {
+      // 为所有正文中的图片添加缩放功能
+      mediumZoom('.vp-doc img', { background: 'var(--vp-c-bg)' })
+    }
+    onMounted(() => {
+      initZoom()
+    })
+    watch(
+      () => route.path,
+      () => nextTick(() => initZoom())
+    )
   }
 }
