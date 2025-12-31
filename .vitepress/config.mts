@@ -5,10 +5,11 @@ export default defineConfig({
   title: "x不是y的解",
   description: "Web Developer Blog",
   lastUpdated: true, // 开启最后更新时间
-  cleanUrls: true,
+  cleanUrls: true, // 开启自动清理 URL 中的 #，.html 符号
   
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/my-blog/favicon.svg' }],
+    ['script', { async: '', src: '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js' }]
   ],
 
   themeConfig: {
@@ -47,6 +48,14 @@ export default defineConfig({
           items: [
             { text: 'Props', link: '/vue/props' },
             { text: 'Event', link: '/vue/event' },
+          ]
+        }
+      ],
+      '/ecosystem/': [
+        {
+          text: '前端生态',
+          items: [
+            { text: 'CSR vs SSR', link: '/ecosystem/csr-vs-ssr' },
           ]
         }
       ]

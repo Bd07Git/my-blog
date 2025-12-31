@@ -1,3 +1,24 @@
+<style>
+table th:nth-child(1) { /* 针对第 1 列：描述 */
+  width: 100px;
+}
+</style>
+
+<script setup>
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  // 建议稍微延迟一下，确保 VitePress 的样式渲染完成
+  setTimeout(() => {
+    const firstCell = document.querySelector('.vp-doc table th:first-child')
+    if (firstCell) {
+      const width = firstCell.getBoundingClientRect().width
+      console.log('第一列实际渲染宽度为: ' + width + 'px')
+      // 你也可以在这里把宽度存入 ref 变量供页面使用
+    }
+  }, 100)
+})
+</script>
 # 生命周期
 
 Vue 组件的生命周期是指从组件创建到销毁的过程。

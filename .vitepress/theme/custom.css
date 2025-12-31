@@ -114,3 +114,75 @@ div[class*='language-'] > span.lang {
   opacity: 0.6;
   font-size: 12px;
 }
+
+/* 自定义定义框样式 */
+.definition-box {
+  margin: 24px 0;
+  padding: 16px 24px;
+  border: 1px solid var(--vp-c-brand-1);
+  border-radius: 8px;
+  background-color: var(--vp-c-brand-soft);
+}
+
+.definition-box .title {
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.definition-box .content {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--vp-c-text-1);
+}
+
+/* 带有徽章的简洁框 */
+.badge-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background-color: var(--vp-c-bg-soft);
+  margin: 24px 0;
+}
+
+.custom-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  background-color: #e8f3ff;
+  color: #1e80ff;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badge-text {
+  font-size: 15px;
+  color: var(--vp-c-text-2);
+}
+
+/* 全局表格宽度优化 */
+.vp-doc table {
+  display: table !important;
+  width: 100% !important;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.vp-doc th, .vp-doc td {
+  padding: 12px 16px !important;
+}
+
+/* medium-zoom 样式优化 */
+.medium-zoom-overlay {
+  z-index: 100;
+}
+
+.medium-zoom-image--opened {
+  z-index: 101;
+  border-radius: 0 !important;
+}

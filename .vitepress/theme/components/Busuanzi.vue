@@ -2,27 +2,53 @@
   <div class="busuanzi-wrapper">
     <div class="busuanzi-container">
       <!-- PV 统计 -->
-      <div id="busuanzi_container_site_pv" class="busuanzi-item" style="display:none">
+      <span id="busuanzi_container_site_pv" class="busuanzi-item">
         <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>
         </svg>
         <span class="label">总访问量</span>
         <span id="busuanzi_value_site_pv" class="value"></span>
-      </div>
+      </span>
       
       <div class="divider"></div>
       
       <!-- UV 统计 -->
-      <div id="busuanzi_container_site_uv" class="busuanzi-item" style="display:none">
+      <span id="busuanzi_container_site_uv" class="busuanzi-item">
         <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
         <span class="label">访客数</span>
         <span id="busuanzi_value_site_uv" class="value"></span>
-      </div>
+      </span>
     </div>
   </div>
 </template>
+
+<script setup>
+import { watch } from 'vue'
+import { useRoute } from 'vitepress'
+
+const route = useRoute()
+
+// 监听路由变化，在 SPA 切换页面时重新触发不蒜子统计
+watch(
+  () => route.path,
+  () => {
+    // 延迟一小会儿确保 DOM 已更新
+    setTimeout(() => {
+      const script = document.getElementById('busuanzi-script')
+      if (script) script.remove()
+      
+      const newScript = document.createElement('script')
+      newScript.id = 'busuanzi-script'
+      newScript.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+      newScript.async = true
+      document.body.appendChild(newScript)
+    }, 500)
+  },
+  { immediate: true }
+)
+</script>
 
 <style scoped>
 .busuanzi-wrapper {
@@ -52,7 +78,7 @@
 }
 
 .busuanzi-item {
-  display: flex !important; /* 强制覆盖不蒜子可能的 inline 样式 */
+  display: none; /* 初始隐藏，由不蒜子脚本控制显示 */
   align-items: center;
   gap: 8px;
   white-space: nowrap; /* 防止长数字换行 */
