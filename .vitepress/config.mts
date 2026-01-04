@@ -77,8 +77,6 @@ export default defineConfig({
         {
           text: '前端生态',
           items: [
-            { text: '生态导航', link: '/ecosystem/' },
-            { text: 'CSR vs SSR', link: '/ecosystem/csr-vs-ssr' },
           ]
         }
       ]
