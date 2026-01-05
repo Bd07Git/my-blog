@@ -22,6 +22,8 @@ export default defineConfig({
       { text: 'Vue', link: '/vue/index' },
       { text: '项目', link: '/project/' },
       { text: 'vite', link: '/vite/' },
+      { text: 'webpack', link: '/webpack/' },
+      { text: 'git', link: '/git/' },
       { text: '面j', link: '/interview/' },
       { 
         text: '更多', 
@@ -77,6 +79,25 @@ export default defineConfig({
         {
           text: '前端生态',
           items: [
+          ]
+        }
+      ],
+      '/webpack/': [
+        {
+          text: 'Webpack',
+          items: [
+            { text: '基础与 SourceMap', link: '/webpack/' },
+            { text: 'loader', link: '/webpack/loader' },
+            { text: '插件 (Plugin)', link: '/webpack/plugin' },
+            { text: '杂记', link: '/webpack/webpack-memo/' },
+          ]
+        }
+      ],
+      '/git/': [
+        {
+          text: 'Git',
+          items: [
+            { text: '基础教程', link: '/git/' },
           ]
         }
       ]
