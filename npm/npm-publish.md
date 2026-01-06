@@ -102,7 +102,7 @@ import { add } from '@fdfe/math-utils';
 console.log(add(10, 20)); // 30
 ```
 ![alt text](image-2.png)
-![alt text](image-3.png)
+![alt text](1f5607dc-ae16-4b79-89b1-a73c65a8444b.png)
 ![alt text](image-4.png)
 
 
