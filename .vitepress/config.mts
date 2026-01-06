@@ -24,6 +24,7 @@ export default defineConfig({
       { text: 'vite', link: '/vite/' },
       { text: 'webpack', link: '/webpack/' },
       { text: 'git', link: '/git/' },
+      { text: 'npm', link: '/npm/' },
       { text: '面j', link: '/interview/' },
       { 
         text: '更多', 
@@ -98,6 +99,15 @@ export default defineConfig({
           text: 'Git',
           items: [
             { text: '基础教程', link: '/git/' },
+          ]
+        }
+      ],
+      '/npm/': [
+        {
+          text: 'npm',
+          items: [
+            { text: 'npm 详解', link: '/npm/' },
+            { text: '如何发布一个npm包', link: '/npm/npm-publish' }
           ]
         }
       ]
