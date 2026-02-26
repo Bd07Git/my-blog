@@ -148,7 +148,7 @@ app.listen(port, () => {
 **SSR返回资源参考**
 
 源码中可以看到完整的html内容都被返回了
-![alt text](image.png)
+<!-- ![alt text](image.png) -->
 
 
 
