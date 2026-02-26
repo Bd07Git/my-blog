@@ -322,3 +322,6 @@ module，chunk 和 bundle 其实就是同一份逻辑代码在不同转换场景
    shared: ['lodash', 'axios','jquery']
   ```
 
+
+  ## 10
+

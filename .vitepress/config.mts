@@ -92,7 +92,7 @@ export default defineConfig({
             { text: '基础与 SourceMap', link: '/webpack/' },
             { text: 'loader', link: '/webpack/loader' },
             { text: '插件 (Plugin)', link: '/webpack/plugin' },
-            { text: '杂记', link: '/webpack/webpack-memo/' },
+            { text: '杂记', link: '/webpack/webpack-memo' },
           ]
         }
       ],
