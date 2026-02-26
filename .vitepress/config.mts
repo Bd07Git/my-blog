@@ -1,4 +1,12 @@
 import { defineConfig } from 'vitepress'
+import { getRandomValues } from 'crypto'
+
+// Polyfill for Node.js crypto
+if (!globalThis.crypto) {
+  globalThis.crypto = {
+    getRandomValues,
+  } as any
+}
 
 export default defineConfig({
   base: '/my-blog/',
@@ -7,9 +15,17 @@ export default defineConfig({
   lastUpdated: true, // 开启最后更新时间
   cleanUrls: true, // 开启自动清理 URL 中的 #，.html 符号
   
+  vite: {
+    define: {
+      'global.crypto': 'typeof globalThis.crypto !== "undefined" ? globalThis.crypto : {}',
+    },
+    ssr: {
+      noExternal: [],
+    },
+  },
+  
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/my-blog/favicon.svg' }],
-    ['script', { async: '', defer: '', src: '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js' }]
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/my-blog/favicon.svg' }]
   ],
 
   themeConfig: {
