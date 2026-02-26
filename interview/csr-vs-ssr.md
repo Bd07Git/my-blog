@@ -74,7 +74,7 @@
 **CSR返回资源参考**
 
 源码中可以看到仅有一个id为app的div元素,其他均js和css资源需要加载。
-![alt text](image-1.png)
+<!-- ![alt text](image-1.png) -->
 
 ### 优点
 - 服务器压力小，页面切换流畅
