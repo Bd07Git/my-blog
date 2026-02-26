@@ -26,13 +26,15 @@ export default defineConfig({
       { text: 'git', link: '/git/' },
       { text: 'npm', link: '/npm/' },
       { text: '面j', link: '/interview/' },
+      { text: '金字塔原理', link: '/pyramid/' },
       { 
         text: '更多', 
         items: [
           { text: '前端生态', link: '/ecosystem/' },
           { text: '踩坑记录', link: '/pitfalls/' }
         ]
-      }
+      },
+      { text: '大杂烩', link: '/mixcontent/' },
     ],
 
     // 2. 侧边栏配置
