@@ -26,6 +26,7 @@ export default defineConfig({
       { text: 'npm', link: '/npm/' },
       { text: '面j', link: '/interview/' },
       { text: '金字塔原理', link: '/pyramid/' },
+      { text: '📷 相册', link: '/photos/' },
       { 
         text: '更多', 
         items: [

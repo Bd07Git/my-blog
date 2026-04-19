@@ -10,6 +10,8 @@ import BackToTop from './components/BackToTop.vue'
 import ClickFireworks from './components/ClickFireworks.vue'
 import PageInfo from './components/PageInfo.vue'
 import VueDirectory from './components/VueDirectory.vue'
+import PhotoGallery from './components/PhotoGallery.vue'
+import BGMPlayer from './components/BGMPlayer.vue'
 
 export default {
   extends: DefaultTheme,
@@ -30,6 +32,8 @@ export default {
     app.component('ClickFireworks', ClickFireworks)
     app.component('PageInfo', PageInfo)
     app.component('VueDirectory', VueDirectory)
+    app.component('PhotoGallery', PhotoGallery)
+    app.component('BGMPlayer', BGMPlayer)
   },
   setup() {
     const route = useRoute()
