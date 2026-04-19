@@ -667,6 +667,8 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .photo-gallery-wrapper {
     flex-direction: column;
+    margin-top: 20px;
+    padding: 0px 10px;
   }
 
   .category-sidebar {
