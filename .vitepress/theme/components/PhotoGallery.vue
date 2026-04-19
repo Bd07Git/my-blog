@@ -33,7 +33,8 @@
       <div class="gallery-header">
         <h1 class="gallery-title">{{ title }}</h1>
         <p class="gallery-desc">{{ description }}</p>
-        <!-- 布局切换 -->
+        <!-- 布局切换 + 上传按钮 -->
+        <div class="header-actions">
         <div class="layout-switcher">
           <button 
             :class="['layout-btn', { active: layout === 'masonry' }]"
@@ -59,6 +60,9 @@
               <rect x="9" y="9" width="7" height="7" rx="1"/>
             </svg>
           </button>
+        </div>
+        <!-- 上传组件（内置密码锁） -->
+        <PhotoUploader :existing-categories="categories" />
         </div>
       </div>
 
@@ -141,6 +145,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import PhotoUploader from './PhotoUploader.vue'
 
 const props = defineProps({
   photos: {
@@ -381,6 +386,15 @@ onUnmounted(() => {
   color: var(--vp-c-text-2);
   font-size: 0.95rem;
   margin-bottom: 16px;
+}
+
+/* 标题区操作栏 */
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* 布局切换按钮 */
