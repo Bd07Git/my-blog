@@ -46,6 +46,12 @@ const photos = [
     date: '2026-04',
     alt: '景'
   },
+  {
+    src: '/my-blog/photo_1776682540670_0.jpg',
+    caption: 'stop',
+    date: '2026-04',
+    alt: '合照'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
