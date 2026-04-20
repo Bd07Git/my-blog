@@ -41,10 +41,10 @@ const photos = [
     alt: '合照'
   },
   {
-    src: '/my-blog/photo_1776614351689_0.png',
-    caption: '招笑',
+    src: '/my-blog/photo_1776676336342_0.jpg',
+    caption: '摩天轮',
     date: '2026-04',
-    alt: '合照'
+    alt: '景'
   },
   // 在这里继续添加更多图片，格式如下：
   // {
