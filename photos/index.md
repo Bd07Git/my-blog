@@ -6,39 +6,39 @@ layout: page
 const photos = [
   {
     src: '/my-blog/qingqing1.jpg',
-    caption: 'ð æµ·è¾¹',
+    caption: '🌊 海边',
     date: '2026-04',
-    alt: 'é£æ¯'
+    alt: '风景'
   },
   {
     src: '/my-blog/qingqing4.jpg',
-    caption: 'ð æµ·è¾¹',
+    caption: '🌊 海边',
     date: '2026-04',
-    alt: 'é£æ¯'
+    alt: '风景'
   },
   {
     src: '/my-blog/qingqing3.jpg',
-    caption: 'âï¸ ç¬¬ä¸æ¬¡ä¼æ¤',
+    caption: '❄️ 第一次会晤',
     date: '2026-02',
-    alt: 'åç§'
+    alt: '合照'
   },
-    {
+  {
     src: '/my-blog/qingqing2.jpg',
-    caption: 'ð åæ¬¡ä¼æ¤',
+    caption: '🍎 再次会晤',
     date: '2026-03',
-    alt: 'åç§'
+    alt: '合照'
   },
-    {
+  {
     src: '/my-blog/qingqing5.jpg',
-    caption: 'again ç¬¬ä¸æ¬¡',
+    caption: 'again 第三次',
     date: '2026-04',
-    alt: 'åç§'
+    alt: '合照'
   },
-   {
+  {
     src: '/my-blog/qingqing6.jpg',
-    caption: 'again ç¬¬ä¸æ¬¡',
+    caption: 'again 第三次',
     date: '2026-04',
-    alt: 'åç§'
+    alt: '合照'
   },
   {
     src: '/my-blog/photo_1776614351689_0.png',
@@ -46,18 +46,25 @@ const photos = [
     date: '2026-04',
     alt: '合照'
   },
+  // 在这里继续添加更多图片，格式如下：
+  // {
+  //   src: '/my-blog/your-image.jpg',
+  //   caption: '图片说明',
+  //   date: '2026-03',
+  //   alt: '图片描述'
+  // },
 ]
 
 const songs = [
-  // å¡«åä½ çæ­æ²åè¡¨ï¼æ ¼å¼å¦ä¸ï¼
+  // 填写你的歌曲列表，格式如下：
   // {
-  //   name: 'æ­æ²åç§°',
-  //   artist: 'æ­æå',
+  //   name: '歌曲名称',
+  //   artist: '歌手名',
   //   src: '/my-blog/music/song.mp3'
   // },
   {
-    name: 'ç¤ºä¾æ­æ²ï¼è¯·æ¿æ¢ï¼',
-    artist: 'è¯·ä¸ä¼  mp3 å° public/music/ ç®å½',
+    name: '示例歌曲（请替换）',
+    artist: '请上传 mp3 到 public/music/ 目录',
     src: ''
   }
 ]
@@ -65,8 +72,8 @@ const songs = [
 
 <PhotoGallery
   :photos="photos"
-  title="ð· æçç¸å"
-  description="è®°å½çæ´»ä¸­çæ¯ä¸ä¸ªç¾å¥½ç¬é´"
+  title="📷 我的相册"
+  description="记录生活中的每一个美好瞬间"
   :columns="3"
 />
 

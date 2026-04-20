@@ -470,7 +470,12 @@ const startUpload = async () => {
     )
     if (!mdRes.ok) throw new Error('读取 photos/index.md 失败')
     const mdData = await mdRes.json()
-    const currentContent = atob(mdData.content.replace(/\n/g, ''))
+    // 正确解码 Base64 → UTF-8（支持中文）
+const base64 = mdData.content.replace(/\n/g, '')
+const binary = atob(base64)
+const bytes = new Uint8Array(binary.length)
+for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i)
+const currentContent = new TextDecoder('utf-8').decode(bytes)
     const fileSha = mdData.sha
 
     // 在 photos 数组末尾（// 在这里继续添加 之前）插入新图片
@@ -507,7 +512,13 @@ const startUpload = async () => {
         },
         body: JSON.stringify({
           message: `📷 新增 ${uploadedImages.length} 张照片`,
-          content: btoa(unescape(encodeURIComponent(newContent))),
+          // 正确编码 UTF-8 → Base64（支持中文）
+content: (() => {
+  const bytes = new TextEncoder().encode(newContent)
+  let binary = ''
+  bytes.forEach(b => binary += String.fromCharCode(b))
+  return btoa(binary)
+})(),
           sha: fileSha,
           branch: GITHUB_BRANCH,
         }),
