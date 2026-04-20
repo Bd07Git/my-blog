@@ -6,59 +6,66 @@ layout: page
 const photos = [
   {
     src: '/my-blog/qingqing1.jpg',
-    caption: '🌊 海边',
+    caption: 'ð æµ·è¾¹',
     date: '2026-04',
-    alt: '风景'
+    alt: 'é£æ¯'
   },
   {
     src: '/my-blog/qingqing4.jpg',
-    caption: '🌊 海边',
+    caption: 'ð æµ·è¾¹',
     date: '2026-04',
-    alt: '风景'
+    alt: 'é£æ¯'
   },
   {
     src: '/my-blog/qingqing3.jpg',
-    caption: '❄️ 第一次会晤',
+    caption: 'âï¸ ç¬¬ä¸æ¬¡ä¼æ¤',
     date: '2026-02',
-    alt: '合照'
+    alt: 'åç§'
   },
     {
     src: '/my-blog/qingqing2.jpg',
-    caption: '🍎 再次会晤',
+    caption: 'ð åæ¬¡ä¼æ¤',
     date: '2026-03',
-    alt: '合照'
+    alt: 'åç§'
   },
     {
     src: '/my-blog/qingqing5.jpg',
-    caption: 'again 第三次',
+    caption: 'again ç¬¬ä¸æ¬¡',
     date: '2026-04',
-    alt: '合照'
+    alt: 'åç§'
   },
    {
     src: '/my-blog/qingqing6.jpg',
-    caption: 'again 第三次',
+    caption: 'again ç¬¬ä¸æ¬¡',
     date: '2026-04',
-    alt: '合照'
+    alt: 'åç§'
   }
-  // 在这里继续添加更多图片，格式如下：
+  // å¨è¿éç»§ç»­æ·»å æ´å¤å¾çï¼æ ¼å¼å¦ä¸ï¼
   // {
   //   src: '/my-blog/your-image.jpg',
-  //   caption: '图片说明',
+  //   caption: 'å¾çè¯´æ',
   //   date: '2026-03',
-  //   alt: '图片描述'
+  //   alt: 'å¾çæè¿°'
   // },
+  {
+    src: '/my-blog/photo_1776614351689_0.png',
+    caption: '招笑hh',
+    date: '2026-04',
+    alt: '合照'
+  },
+]
 ]
 
 const songs = [
-  // 填写你的歌曲列表，格式如下：
+  // å¡«åä½ çæ­æ²åè¡¨ï¼æ ¼å¼å¦ä¸ï¼
   // {
-  //   name: '歌曲名称',
-  //   artist: '歌手名',
+  //   name: 'æ­æ²åç§°',
+  //   artist: 'æ­æå',
   //   src: '/my-blog/music/song.mp3'
   // },
   {
-    name: '示例歌曲（请替换）',
-    artist: '请上传 mp3 到 public/music/ 目录',
+    name: 'ç¤ºä¾æ­æ²ï¼è¯·æ¿æ¢ï¼',
+    artist: 'è¯·ä¸ä¼  mp3 å° public/music/ ç®å½',
     src: ''
   }
 ]
@@ -66,8 +73,8 @@ const songs = [
 
 <PhotoGallery
   :photos="photos"
-  title="📷 我的相册"
-  description="记录生活中的每一个美好瞬间"
+  title="ð· æçç¸å"
+  description="è®°å½çæ´»ä¸­çæ¯ä¸ä¸ªç¾å¥½ç¬é´"
   :columns="3"
 />
 
