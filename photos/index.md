@@ -39,21 +39,13 @@ const photos = [
     caption: 'again ç¬¬ä¸æ¬¡',
     date: '2026-04',
     alt: 'åç§'
-  }
-  // å¨è¿éç»§ç»­æ·»å æ´å¤å¾çï¼æ ¼å¼å¦ä¸ï¼
-  // {
-  //   src: '/my-blog/your-image.jpg',
-  //   caption: 'å¾çè¯´æ',
-  //   date: '2026-03',
-  //   alt: 'å¾çæè¿°'
-  // },
+  },
   {
     src: '/my-blog/photo_1776614351689_0.png',
-    caption: '招笑hh',
+    caption: '招笑',
     date: '2026-04',
     alt: '合照'
   },
-]
 ]
 
 const songs = [
