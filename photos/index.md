@@ -52,6 +52,12 @@ const photos = [
     date: '2026-04',
     alt: '合照'
   },
+  {
+    src: '/my-blog/photo_1776697576609_0.jpg',
+    caption: '海屿你',
+    date: '2026-04',
+    alt: '风景'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
