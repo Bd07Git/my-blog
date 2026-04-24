@@ -58,6 +58,12 @@ const photos = [
     date: '2026-04',
     alt: '风景'
   },
+  {
+    src: '/my-blog/photo_1777003660459_0.jpg',
+    caption: 'ai',
+    date: '2026-04',
+    alt: '千玺'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
