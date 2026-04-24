@@ -94,6 +94,12 @@ const photos = [
     date: '2026-04',
     alt: '合照'
   },
+  {
+    src: '/my-blog/photo_1777041904404_0.jpg',
+    caption: '绝美',
+    date: '2026-04',
+    alt: 'solo'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
