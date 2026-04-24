@@ -70,6 +70,30 @@ const photos = [
     date: '2026-04',
     alt: '千玺'
   },
+  {
+    src: '/my-blog/photo_1777041537483_0.jpg',
+    caption: '不错不错',
+    date: '2026-04',
+    alt: '合照'
+  },
+  {
+    src: '/my-blog/photo_1777041543187_1.jpg',
+    caption: '不错不错',
+    date: '2026-04',
+    alt: '合照'
+  },
+  {
+    src: '/my-blog/photo_1777041549493_2.jpg',
+    caption: '不错不错',
+    date: '2026-04',
+    alt: '合照'
+  },
+  {
+    src: '/my-blog/photo_1777041555761_3.jpg',
+    caption: '不错不错',
+    date: '2026-04',
+    alt: '合照'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
