@@ -118,6 +118,12 @@ const photos = [
     date: '2026-04',
     alt: 'solo'
   },
+  {
+    src: '/my-blog/photo_1777873861098_0.jpeg',
+    caption: '眯眯眼👀第一次拍与被拍都显得有些局促',
+    date: '2026-05',
+    alt: '合照'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
