@@ -136,6 +136,12 @@ const photos = [
     date: '2026-03',
     alt: '合照'
   },
+  {
+    src: '/my-blog/photo_1777875666365_0.jpeg',
+    caption: '你留给我是背影 关于爱情只字不提🙈',
+    date: '2026-03',
+    alt: 'solo'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
