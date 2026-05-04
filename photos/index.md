@@ -172,12 +172,6 @@ const photos = [
     date: '2026-04',
     alt: 'solo'
   },
-  {
-    src: '/my-blog/photo_1777904939427_0.png',
-    caption: '测试删除',
-    date: '2026-05',
-    alt: '风景'
-  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
