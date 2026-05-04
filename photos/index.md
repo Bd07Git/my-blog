@@ -124,6 +124,12 @@ const photos = [
     date: '2026-05',
     alt: '合照'
   },
+  {
+    src: '/my-blog/photo_1777874071073_0.jpeg',
+    caption: '第一张他拍 p的我烦就这样吧我的表情跟照片的表情一样',
+    date: '2026-03',
+    alt: '合照'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
