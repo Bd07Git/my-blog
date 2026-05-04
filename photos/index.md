@@ -160,6 +160,12 @@ const photos = [
     date: '2026-04',
     alt: 'solo'
   },
+  {
+    src: '/my-blog/photo_1777907208245_0.jpg',
+    caption: '凌乱有致，正反皆动人',
+    date: '2026-05',
+    alt: 'solo'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
