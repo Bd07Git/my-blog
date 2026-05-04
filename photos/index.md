@@ -130,6 +130,12 @@ const photos = [
     date: '2026-03',
     alt: '合照'
   },
+  {
+    src: '/my-blog/photo_1777875172238_0.jpeg',
+    caption: '拍照的时候 在人群中只能看见你 耶✌️',
+    date: '2026-03',
+    alt: '合照'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
