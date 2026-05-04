@@ -160,6 +160,12 @@ const photos = [
     date: '2026-04',
     alt: 'solo'
   },
+  {
+    src: '/my-blog/photo_1777885674279_0.jpeg',
+    caption: '前方是未知 迎面是海风',
+    date: '2026-04',
+    alt: '合照'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
