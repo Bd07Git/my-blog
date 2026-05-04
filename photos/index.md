@@ -89,12 +89,6 @@ const photos = [
     alt: '合照'
   },
   {
-    src: '/my-blog/photo_1777041904404_0.jpg',
-    caption: '绝美',
-    date: '2026-04',
-    alt: 'solo'
-  },
-  {
     src: '/my-blog/photo_1777426112207_0.jpg',
     caption: '典藏',
     date: '2026-04',
