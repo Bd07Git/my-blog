@@ -166,6 +166,12 @@ const photos = [
     date: '2026-04',
     alt: '合照'
   },
+  {
+    src: '/my-blog/photo_1777885899442_0.jpeg',
+    caption: 'dreamboat🤭',
+    date: '2026-04',
+    alt: 'solo'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
