@@ -142,6 +142,12 @@ const photos = [
     date: '2026-03',
     alt: 'solo'
   },
+  {
+    src: '/my-blog/photo_1777876015240_0.jpeg',
+    caption: '还是经典剪刀手✌️',
+    date: '2026-03',
+    alt: 'solo'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
