@@ -62,9 +62,12 @@
           </button>
         </div>
         <!-- 上传组件（内置密码锁） -->
-        <PhotoUploader :existing-categories="categories" @update:unlocked="isAdminUnlocked = $event" />
-        <!-- 解锁后显示删除按钮 -->
-        <PhotoDeleter v-if="isAdminUnlocked" :photos="photos" />
+        <PhotoUploader ref="uploaderRef" :existing-categories="categories" @update:unlocked="isAdminUnlocked = $event" />
+        <!-- 解锁后显示删除按钮 + 退出锁 -->
+        <template v-if="isAdminUnlocked">
+          <PhotoDeleter :photos="photos" />
+          <button class="lock-btn-out" @click="uploaderRef?.lockOut()" title="退出管理">🔓</button>
+        </template>
         </div>
       </div>
 
@@ -175,6 +178,7 @@ const lightboxPhoto = ref(null)
 const currentIndex = ref(0)
 const activeCategory = ref('all')
 const isAdminUnlocked = ref(false)
+const uploaderRef = ref(null)
 
 // 从 alt 字段提取所有分类（去重）
 const categories = computed(() => {
@@ -403,6 +407,27 @@ onUnmounted(() => {
   gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* 退出管理锁按钮 */
+.lock-btn-out {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 50%;
+  background: var(--vp-c-bg-soft);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.lock-btn-out:hover {
+  border-color: var(--vp-c-brand-1);
+  transform: scale(1.1);
 }
 
 /* 布局切换按钮 */

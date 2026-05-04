@@ -17,7 +17,6 @@
         </svg>
         上传照片
       </button>
-      <button class="lock-btn unlock" @click="lockOut" title="退出管理">🔓</button>
     </div>
 
     <!-- 密码弹窗 -->
@@ -339,6 +338,9 @@ const lockOut = () => {
   localStorage.removeItem('blog_admin_unlocked')
   emit('update:unlocked', false)
 }
+
+// 暴露给父组件调用
+defineExpose({ lockOut })
 
 // ===== Token 配置 =====
 const saveToken = () => {

@@ -143,7 +143,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onUnmounted } from 'vue'
 
 // ===== GitHub 配置（与 PhotoUploader 保持一致）=====
 const GITHUB_OWNER = 'Bd07Git'
@@ -217,22 +217,42 @@ const confirmPreviewList = computed(() =>
 )
 
 // ===== 弹窗控制 =====
+const lockBodyScroll = () => {
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = 'hidden'
+    document.body.style.touchAction = 'none'
+  }
+}
+
+const unlockBodyScroll = () => {
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = ''
+    document.body.style.touchAction = ''
+  }
+}
+
 const openDeleteModal = () => {
   showDeleteModal.value = true
   selectedSrcs.value = new Set()
   searchKeyword.value = ''
   deleteResult.value = null
+  lockBodyScroll()
 }
 
 const closeDeleteModal = () => {
   if (deleting.value) return
   showDeleteModal.value = false
+  unlockBodyScroll()
 }
 
 const confirmDelete = () => {
   if (selectedSrcs.value.size === 0 || deleting.value) return
   showConfirmModal.value = true
 }
+
+onUnmounted(() => {
+  unlockBodyScroll()
+})
 
 // ===== 执行删除 =====
 const executeDelete = async () => {
@@ -494,6 +514,7 @@ const executeDelete = async () => {
   gap: 14px;
   flex: 1;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .modal-footer {
@@ -594,6 +615,7 @@ const executeDelete = async () => {
   overflow-y: auto;
   padding-right: 4px;
   scrollbar-width: thin;
+  overscroll-behavior: contain;
 }
 
 .photo-list-item {
