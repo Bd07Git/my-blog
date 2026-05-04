@@ -12,6 +12,7 @@ import PageInfo from './components/PageInfo.vue'
 import VueDirectory from './components/VueDirectory.vue'
 import PhotoGallery from './components/PhotoGallery.vue'
 import BGMPlayer from './components/BGMPlayer.vue'
+import PhotoDeleter from './components/PhotoDeleter.vue'
 import PhotoUploader from './components/PhotoUploader.vue'
 
 export default {
@@ -35,6 +36,7 @@ export default {
     app.component('VueDirectory', VueDirectory)
     app.component('PhotoGallery', PhotoGallery)
     app.component('BGMPlayer', BGMPlayer)
+    app.component('PhotoDeleter', PhotoDeleter)
     app.component('PhotoUploader', PhotoUploader)
   },
   setup() {

@@ -62,7 +62,9 @@
           </button>
         </div>
         <!-- 上传组件（内置密码锁） -->
-        <PhotoUploader :existing-categories="categories" />
+        <PhotoUploader :existing-categories="categories" @update:unlocked="isAdminUnlocked = $event" />
+        <!-- 解锁后显示删除按钮 -->
+        <PhotoDeleter v-if="isAdminUnlocked" :photos="photos" />
         </div>
       </div>
 
@@ -146,6 +148,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import PhotoUploader from './PhotoUploader.vue'
+import PhotoDeleter from './PhotoDeleter.vue'
 
 const props = defineProps({
   photos: {
@@ -171,6 +174,7 @@ const layout = ref('masonry')
 const lightboxPhoto = ref(null)
 const currentIndex = ref(0)
 const activeCategory = ref('all')
+const isAdminUnlocked = ref(false)
 
 // 从 alt 字段提取所有分类（去重）
 const categories = computed(() => {
@@ -252,6 +256,10 @@ const handleKey = (e) => {
 onMounted(() => {
   if (typeof window !== 'undefined') {
     window.addEventListener('keydown', handleKey)
+    // 初始化管理员解锁状态
+    if (localStorage.getItem('blog_admin_unlocked') === 'true') {
+      isAdminUnlocked.value = true
+    }
   }
 })
 

@@ -265,6 +265,8 @@ const props = defineProps({
   }
 })
 
+const emit = defineEmits(['update:unlocked'])
+
 const allCategories = computed(() => props.existingCategories)
 
 const catIconMap = {
@@ -290,7 +292,10 @@ onMounted(() => {
   // 检查 localStorage 里是否已解锁
   if (typeof window !== 'undefined') {
     const saved = localStorage.getItem('blog_admin_unlocked')
-    if (saved === 'true') unlocked.value = true
+    if (saved === 'true') {
+      unlocked.value = true
+      emit('update:unlocked', true)
+    }
 
     const savedToken = localStorage.getItem('blog_github_token')
     if (savedToken) {
@@ -314,6 +319,7 @@ const verifyPassword = async () => {
     if (hashHex === PASSWORD_HASH) {
       unlocked.value = true
       localStorage.setItem('blog_admin_unlocked', 'true')
+      emit('update:unlocked', true)
       showPasswordModal.value = false
       password.value = ''
       pwdError.value = false
@@ -331,6 +337,7 @@ const verifyPassword = async () => {
 const lockOut = () => {
   unlocked.value = false
   localStorage.removeItem('blog_admin_unlocked')
+  emit('update:unlocked', false)
 }
 
 // ===== Token 配置 =====
