@@ -35,12 +35,6 @@ const photos = [
     alt: '合照'
   },
   {
-    src: '/my-blog/qingqing6.jpg',
-    caption: 'again 第三次',
-    date: '2026-04',
-    alt: '合照'
-  },
-  {
     src: '/my-blog/photo_1776676336342_0.jpg',
     caption: '摩天轮',
     date: '2026-04',
