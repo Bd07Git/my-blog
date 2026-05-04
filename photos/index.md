@@ -154,6 +154,12 @@ const photos = [
     date: '2026-03',
     alt: 'solo'
   },
+  {
+    src: '/my-blog/photo_1777879731674_0.jpeg',
+    caption: '头发虽然梳成了大人的模样但是总是摆些奇奇怪怪的pose',
+    date: '2026-04',
+    alt: 'solo'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
