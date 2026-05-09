@@ -35,12 +35,6 @@ const photos = [
     alt: '合照'
   },
   {
-    src: '/my-blog/qingqing6.jpg',
-    caption: 'again 第三次',
-    date: '2026-04',
-    alt: '合照'
-  },
-  {
     src: '/my-blog/photo_1776676336342_0.jpg',
     caption: '摩天轮',
     date: '2026-04',
@@ -93,12 +87,6 @@ const photos = [
     caption: '不错不错',
     date: '2026-04',
     alt: '合照'
-  },
-  {
-    src: '/my-blog/photo_1777041904404_0.jpg',
-    caption: '绝美',
-    date: '2026-04',
-    alt: 'solo'
   },
   {
     src: '/my-blog/photo_1777426112207_0.jpg',
@@ -170,6 +158,12 @@ const photos = [
     src: '/my-blog/photo_1777885899442_0.jpeg',
     caption: 'dreamboat🤭',
     date: '2026-04',
+    alt: 'solo'
+  },
+  {
+    src: '/my-blog/photo_1777907208245_0.jpg',
+    caption: '凌乱有致，正反皆动人',
+    date: '2026-05',
     alt: 'solo'
   },
   // 在这里继续添加更多图片，格式如下：
