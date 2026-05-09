@@ -100,6 +100,7 @@
       :src="currentSong.src"
       @timeupdate="onTimeUpdate"
       @loadedmetadata="onMetaLoaded"
+      @canplay="onCanPlay"
       @ended="nextSong"
       @error="onError"
     ></audio>
@@ -202,6 +203,24 @@ const onError = () => {
   isPlaying.value = false
 }
 
+// 音频就绪时触发（含缓存命中场景）
+let pendingAutoplay = false
+const onCanPlay = () => {
+  if (!pendingAutoplay) return
+  pendingAutoplay = false
+  audioRef.value?.play().then(() => {
+    isPlaying.value = true
+    isExpanded.value = true
+    setTimeout(() => { isExpanded.value = false }, 4000)
+  }).catch(() => {
+    // 仍被阻止，等用户交互
+    if (typeof window !== 'undefined' && !interactionBound) {
+      INTERACTION_EVENTS.forEach(e => window.addEventListener(e, onFirstInteraction, { once: false, passive: true }))
+      interactionBound = true
+    }
+  })
+}
+
 const seekTo = (e) => {
   if (!audioRef.value || !duration.value) return
   const rect = e.currentTarget.getBoundingClientRect()
@@ -240,20 +259,22 @@ const onFirstInteraction = () => {
 onMounted(() => {
   if (!props.autoplay || !props.songs.length) return
 
-  // 先尝试直接 autoplay（部分浏览器允许静音 / 用户已与站点交互过）
-  setTimeout(() => {
-    audioRef.value?.play().then(() => {
-      isPlaying.value = true
-      isExpanded.value = true
-      setTimeout(() => { isExpanded.value = false }, 4000)
-    }).catch(() => {
-      // 被浏览器阻止，退而求其次：等用户首次交互后再播
-      if (typeof window !== 'undefined') {
-        INTERACTION_EVENTS.forEach(e => window.addEventListener(e, onFirstInteraction, { once: false, passive: true }))
-        interactionBound = true
-      }
-    })
-  }, 800)
+  // 标记需要自动播放，等 canplay 事件触发时执行
+  // 这样无论是首次加载还是缓存命中，都能在音频真正就绪后播放
+  pendingAutoplay = true
+
+  // 同时尝试直接 play()：如果音频已缓存且浏览器允许，立刻播放
+  // 如果被阻止或尚未加载，canplay 事件会接手
+  audioRef.value?.play().then(() => {
+    pendingAutoplay = false
+    isPlaying.value = true
+    isExpanded.value = true
+    setTimeout(() => { isExpanded.value = false }, 4000)
+  }).catch(() => {
+    // play() 失败：可能是音频未加载完 or 浏览器阻止
+    // 情况1：音频未就绪 → 等 canplay 事件（pendingAutoplay 仍为 true）
+    // 情况2：浏览器阻止 → 在 canplay 里会再次尝试，失败后绑定交互监听
+  })
 })
 
 onUnmounted(() => {
