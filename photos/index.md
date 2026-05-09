@@ -182,16 +182,10 @@ const photos = [
 ]
 
 const songs = [
-  // 填写你的歌曲列表，格式如下：
-  // {
-  //   name: '歌曲名称',
-  //   artist: '歌手名',
-  //   src: '/my-blog/music/song.mp3'
-  // },
   {
-    name: '示例歌曲（请替换）',
-    artist: '请上传 mp3 到 public/music/ 目录',
-    src: ''
+    name: 'R&B All Night',
+    artist: 'KnowKnow, Higher Brothers',
+    src: '/my-blog/music/KnowKnow,Higher Brothers-R&B All Night.mp3'
   }
 ]
 </script>
@@ -203,4 +197,4 @@ const songs = [
   :columns="3"
 />
 
-<BGMPlayer :songs="songs" :autoplay="false" />
+<BGMPlayer :songs="songs" :autoplay="true" />

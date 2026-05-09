@@ -1,7 +1,7 @@
 <template>
   <div class="bgm-player" :class="{ expanded: isExpanded, playing: isPlaying }">
     <!-- 主按钮（唱片） -->
-    <div class="bgm-disc" @click="toggleExpand" :title="isExpanded ? '收起' : '展开播放器'">
+    <div class="bgm-disc" :class="{ 'waiting': !isPlaying && props.autoplay }" @click="toggleExpand" :title="isExpanded ? '收起' : '展开播放器'">
       <div class="disc-inner">
         <svg v-if="!isPlaying" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <path d="M8 5v14l11-7z"/>
@@ -56,16 +56,17 @@
               <path d="M6 18l8.5-6L6 6v12zm2-8.14l5.09 3.64-5.09 3.64v-7.28zM16 6h2v12h-2z"/>
             </svg>
           </button>
-          <!-- 音量 -->
-          <button class="ctrl-btn" @click="toggleMute" :title="isMuted ? '取消静音' : '静音'">
-            <svg v-if="!isMuted" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        </div>
+        <!-- 音量控制行 -->
+        <div class="volume-row">
+          <button class="ctrl-btn ctrl-btn-sm" @click="toggleMute" :title="isMuted ? '取消静音' : '静音'">
+            <svg v-if="!isMuted" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
             </svg>
-            <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <svg v-else width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
             </svg>
           </button>
-          <!-- 音量滑块 -->
           <input 
             type="range" 
             class="volume-slider"
@@ -132,7 +133,15 @@ const volume = ref(0.7)
 const currentSong = computed(() => props.songs[currentIndex.value] || { name: '暂无歌曲', artist: '', src: '' })
 const progressPercent = computed(() => duration.value ? (currentTime.value / duration.value) * 100 : 0)
 
-const toggleExpand = () => { isExpanded.value = !isExpanded.value }
+const toggleExpand = () => {
+  isExpanded.value = !isExpanded.value
+  // 展开时同步触发自动播放（利用用户交互解除浏览器限制）
+  if (isExpanded.value && !isPlaying.value && props.autoplay && currentSong.value.src) {
+    audioRef.value?.play().then(() => {
+      isPlaying.value = true
+    }).catch(() => {})
+  }
+}
 
 const togglePlay = () => {
   if (!audioRef.value || !currentSong.value.src) return
@@ -206,18 +215,52 @@ const formatTime = (seconds) => {
   return `${m}:${s.toString().padStart(2, '0')}`
 }
 
+// 「首次交互后自动播放」：监听用户第一次与页面的任意交互
+const tryAutoplay = () => {
+  if (!props.autoplay || !props.songs.length || !currentSong.value.src) return
+  audioRef.value?.play().then(() => {
+    isPlaying.value = true
+    // 自动展开面板提示用户
+    isExpanded.value = true
+    setTimeout(() => { isExpanded.value = false }, 4000)
+  }).catch(() => {})
+}
+
+const INTERACTION_EVENTS = ['click', 'touchstart', 'keydown', 'scroll']
+let interactionBound = false
+
+const onFirstInteraction = () => {
+  if (isPlaying.value) return
+  tryAutoplay()
+  // 移除所有监听，只触发一次
+  INTERACTION_EVENTS.forEach(e => window.removeEventListener(e, onFirstInteraction))
+  interactionBound = false
+}
+
 onMounted(() => {
-  if (props.autoplay && props.songs.length > 0) {
-    setTimeout(() => {
-      audioRef.value?.play().then(() => {
-        isPlaying.value = true
-      }).catch(() => {})
-    }, 1000)
-  }
+  if (!props.autoplay || !props.songs.length) return
+
+  // 先尝试直接 autoplay（部分浏览器允许静音 / 用户已与站点交互过）
+  setTimeout(() => {
+    audioRef.value?.play().then(() => {
+      isPlaying.value = true
+      isExpanded.value = true
+      setTimeout(() => { isExpanded.value = false }, 4000)
+    }).catch(() => {
+      // 被浏览器阻止，退而求其次：等用户首次交互后再播
+      if (typeof window !== 'undefined') {
+        INTERACTION_EVENTS.forEach(e => window.addEventListener(e, onFirstInteraction, { once: false, passive: true }))
+        interactionBound = true
+      }
+    })
+  }, 800)
 })
 
 onUnmounted(() => {
   audioRef.value?.pause()
+  if (interactionBound && typeof window !== 'undefined') {
+    INTERACTION_EVENTS.forEach(e => window.removeEventListener(e, onFirstInteraction))
+  }
 })
 </script>
 
@@ -258,9 +301,19 @@ onUnmounted(() => {
   animation: spin 4s linear infinite;
 }
 
+/* 等待用户交互时的脉冲提示 */
+.bgm-disc.waiting {
+  animation: pulse 2s ease-in-out infinite;
+}
+
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,0.2), 0 0 0 0 rgba(255,110,180,0.5); }
+  50% { box-shadow: 0 4px 16px rgba(0,0,0,0.2), 0 0 0 10px rgba(255,110,180,0); }
 }
 
 .disc-inner {
@@ -361,6 +414,7 @@ onUnmounted(() => {
   justify-content: center;
   width: 32px;
   height: 32px;
+  flex-shrink: 0;
   border: none;
   border-radius: 50%;
   background: var(--vp-c-bg-soft);
@@ -377,6 +431,7 @@ onUnmounted(() => {
 .play-btn {
   width: 40px;
   height: 40px;
+  flex-shrink: 0;
   background: linear-gradient(135deg, var(--vp-c-brand-1), #ff6eb4);
   color: #fff;
 }
@@ -387,10 +442,26 @@ onUnmounted(() => {
   transform: scale(1.05);
 }
 
+/* 音量控制行 */
+.volume-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+.ctrl-btn-sm {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
 /* 音量滑块 */
 .volume-slider {
-  width: 56px;
+  flex: 1;
   height: 4px;
+  flex-shrink: 0;
   appearance: none;
   background: var(--vp-c-divider);
   border-radius: 2px;
@@ -485,7 +556,15 @@ onUnmounted(() => {
     right: 16px;
   }
   .bgm-panel {
-    width: 220px;
+    width: calc(100vw - 48px);
+    max-width: 280px;
+    min-width: 200px;
+  }
+  .controls {
+    gap: 4px;
+  }
+  .volume-slider {
+    width: 48px;
   }
 }
 </style>
