@@ -25,6 +25,7 @@ export default defineConfig({
       { text: 'git', link: '/git/' },
       { text: 'npm', link: '/npm/' },
       { text: '面j', link: '/interview/' },
+      { text: 'CSS', link: '/css/' },
       { text: '金字塔原理', link: '/pyramid/' },
       { text: '📷 相册', link: '/photos/' },
       { 
@@ -93,6 +94,15 @@ export default defineConfig({
             { text: 'loader', link: '/webpack/loader' },
             { text: '插件 (Plugin)', link: '/webpack/plugin' },
             { text: '杂记', link: '/webpack/webpack-memo' },
+          ]
+        }
+      ],
+      '/css/': [
+        {
+          text: 'CSS 踩坑',
+          items: [
+            { text: '概览', link: '/css/' },
+            { text: 'div 里的 img 经典问题', link: '/css/img-in-div' },
           ]
         }
       ],
