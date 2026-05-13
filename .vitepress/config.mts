@@ -77,6 +77,12 @@ export default defineConfig({
             { text: '数组和字符串', link: '/interview/arrayString' },
             { text: 'ES6+ 新特性', link: '/interview/es6' },
           ]
+        },
+        {
+          text: '浏览器 & DOM',
+          items: [
+            { text: 'img 加载：onload、complete、decode()', link: '/interview/img-load' },
+          ]
         }
       ],
       '/ecosystem/': [
