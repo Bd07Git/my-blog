@@ -125,6 +125,7 @@ export default defineConfig({
           text: 'npm',
           items: [
             { text: 'npm 详解', link: '/npm/' },
+            { text: 'NPM 入门知识：命令、依赖与脚本', link: '/npm/npm-intro' },
             { text: '如何发布一个npm包', link: '/npm/npm-publish' }
           ]
         }
