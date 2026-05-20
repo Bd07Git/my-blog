@@ -239,49 +239,182 @@ console.log(nanoid())
 
 ---
 
-## npm 开发脚手架
+## npm link 完整使用流程
 
-### 创建全局模块软链接（npm link）
+`npm link` 是 npm 提供的用于**本地模块开发与调试**的工具，核心作用是建立软链接，让你在不发布到 npm 仓库的情况下，实时调试本地包。有两种典型使用场景。
 
-`npm link` 是 npm 提供的用于**本地模块开发与调试**的工具，允许你在不发布到 npm 仓库的情况下，将本地开发的模块实时应用到其他项目中。
+---
 
-**使用步骤**：
+### 场景一：本地包联调（最常用）
 
-1. 创建项目并配置 `package.json`：
+**需求**：你在开发一个工具库 `my-utils`，同时想在另一个项目 `my-app` 里实时测试它，不想每次改动都发布到 npm。
 
-```json
-{
-  "name": "a-p-dev",
-  "bin": {
-    "a-p-dev": "bin/index.js"
-  },
-  "main": "bin/index.js"
-}
+**目录结构**：
+
+```
+/projects/
+  my-utils/    ← 被引用的本地包
+  my-app/      ← 使用该包的项目
 ```
 
-2. 在项目目录中执行：
+**第一步：在 `my-utils` 中注册全局链接**
 
 ```bash
+cd /projects/my-utils
 npm link
 ```
 
-- 在全局 `node_modules` 目录下创建一个指向当前项目的软链接
-- 若 `package.json` 中存在 `bin` 字段，npm 会自动在全局 `nodejs` 目录创建可执行文件
-  - Windows：`a-p-dev.cmd`、`a-p-dev.ps1`
-  - Linux/macOS：`a-p-dev`（符号链接）
+npm 会在全局 `node_modules` 中创建一条指向 `/projects/my-utils` 的软链接，链接名就是 `package.json` 中的 `name` 字段。
 
-3. 在任意目录执行 `a-p-dev`，即可触发本地项目中 `bin/index.js` 的执行。
-
-> **关键特性**：软链接指向本地真实路径，原项目代码修改后**无需重新执行 `npm link`**，全局引用会实时同步最新代码。
-
-### 解除全局模块软链接
+**第二步：在 `my-app` 中链接到本地包**
 
 ```bash
-npm unlink a-p-dev -g
+cd /projects/my-app
+npm link my-utils
 ```
 
-- 删除全局 `node_modules` 目录下的软链接目录
-- 删除全局 `nodejs` 目录下的可执行文件
+此时 `my-app/node_modules/my-utils` 就指向了本地的 `/projects/my-utils`，**修改 `my-utils` 的代码，`my-app` 中立即生效，无需重新安装**。
+
+**第三步：正常使用**
+
+```js
+// my-app/src/index.js
+import { hello } from 'my-utils'
+hello()
+```
+
+**第四步：联调完成，解除链接**
+
+```bash
+# 在 my-app 中解除对 my-utils 的链接
+cd /projects/my-app
+npm unlink my-utils
+
+# 在 my-utils 中删除全局注册
+cd /projects/my-utils
+npm unlink
+```
+
+解除后再执行 `npm install` 恢复正常安装。
+
+---
+
+### 场景二：开发全局 CLI 工具
+
+**需求**：开发一个命令行工具，想在本地直接用命令名测试，不用每次 `node ./bin/index.js`。
+
+**配置 `package.json`**：
+
+```json
+{
+  "name": "my-cli",
+  "bin": {
+    "my-cli": "bin/index.js"
+  }
+}
+```
+
+**执行链接**：
+
+```bash
+cd /projects/my-cli
+npm link
+```
+
+npm 会同时做两件事：
+- 在全局 `node_modules` 创建 `my-cli` 软链接
+- 在全局 `bin` 目录创建可执行文件（macOS/Linux 是符号链接，Windows 是 `.cmd` 文件）
+
+**此后可以在任意目录直接使用命令**：
+
+```bash
+my-cli --help   # 直接触发本地 bin/index.js 执行
+```
+
+**解除**：
+
+```bash
+npm unlink my-cli -g
+```
+
+---
+
+### 两种场景对比
+
+| | 场景一：本地包联调 | 场景二：CLI 工具开发 |
+|--|--|--|
+| 目的 | 在项目中引用本地包 | 全局使用命令行工具 |
+| 操作 | `npm link`（包） + `npm link <name>`（项目） | `npm link`（包含 `bin` 配置） |
+| 解除 | `npm unlink <name>`（项目内） | `npm unlink <name> -g` |
+
+---
+
+### 常见问题
+
+**Q：需要先 build 才能 link 吗？**
+
+取决于 `package.json` 的 `main` 字段指向哪里：
+
+```json
+// 情况一：main 指向源码 → 不需要 build，link 后改代码立即生效 ✅
+{ "main": "src/index.js" }
+
+// 情况二：main 指向编译产物 → 必须先 build，否则读到的是旧代码 ⚠️
+{ "main": "dist/index.js" }
+```
+
+如果是 TypeScript 项目（`main` 指向 `dist/`），推荐开启 watch 模式，这样改源码会自动重新编译：
+
+```bash
+# 在 my-utils 目录下，开一个终端持续监听
+tsc -w
+
+# 另一个终端正常跑 my-app
+npm run dev
+```
+
+**Q：修改了代码，另一个项目没有更新？**
+
+优先检查 `main` 指向的是 `src/` 还是 `dist/`。如果是 `dist/`，确认 watch 模式是否在运行，或手动执行一次 `npm run build`。
+
+**Q：如何验证软链接是否创建成功？**
+
+**验证全局注册**（执行 `npm link` 之后）：
+
+```bash
+# 查看全局包列表，确认包名出现其中
+npm list -g --depth=0
+
+# 或者直接查看全局 node_modules 目录
+ls $(npm root -g) | grep my-utils
+```
+
+**验证项目内链接**（执行 `npm link my-utils` 之后）：
+
+```bash
+# macOS / Linux：ls -la 可以看到 -> 符号，说明是软链接
+ls -la node_modules/my-utils
+# 输出示例：
+# lrwxr-xr-x  my-utils -> /Users/xxx/.nvm/versions/node/.../node_modules/my-utils
+
+# Windows（PowerShell）
+(Get-Item node_modules/my-utils).LinkType  # 输出 SymbolicLink 即成功
+```
+
+**最直接的验证方式**：在项目里实际 `import` 并打印，确认代码是本地的：
+
+```js
+// my-utils/src/index.js 加一行标记
+export const version = 'LOCAL_DEV'
+
+// my-app 里引入验证
+import { version } from 'my-utils'
+console.log(version)  // 输出 LOCAL_DEV 说明链接成功
+```
+
+**Q：`npm link` 后 `node_modules` 里找不到包？**
+
+确认 `package.json` 里的 `name` 字段和 `npm link <name>` 的名字完全一致（包括 `@scope/name` 的格式）。
 
 ---
 
