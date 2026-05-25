@@ -166,6 +166,12 @@ const photos = [
     date: '2026-05',
     alt: 'solo'
   },
+  {
+    src: '/my-blog/photo_1779685418199_0.jpg',
+    caption: '冷酷女王经典挡头照',
+    date: '2026-05',
+    alt: '西安'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
