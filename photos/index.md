@@ -184,6 +184,12 @@ const photos = [
     date: '2026-05',
     alt: '合照'
   },
+  {
+    src: '/my-blog/photo_1779686000335_0.jpg',
+    caption: '这种凌乱感体验也非常好',
+    date: '2026-05',
+    alt: '合照'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
