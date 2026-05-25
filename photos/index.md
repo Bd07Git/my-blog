@@ -172,6 +172,12 @@ const photos = [
     date: '2026-05',
     alt: '西安'
   },
+  {
+    src: '/my-blog/photo_1779685743310_0.jpg',
+    caption: '拍照漏半张笑容给人我留下遐想空间',
+    date: '2026-05',
+    alt: '合照'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
