@@ -178,6 +178,12 @@ const photos = [
     date: '2026-05',
     alt: '合照'
   },
+  {
+    src: '/my-blog/photo_1779685883656_0.jpg',
+    caption: '在这里做故打事的干啥子嘛',
+    date: '2026-05',
+    alt: '合照'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
