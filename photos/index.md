@@ -214,6 +214,30 @@ const photos = [
     date: '2026-06',
     alt: 'solo'
   },
+  {
+    src: '/my-blog/photo_1781746293465_0.jpg',
+    caption: '墨镜单品最好的装饰者',
+    date: '2026-06',
+    alt: '合照'
+  },
+  {
+    src: '/my-blog/photo_1781746298738_1.jpg',
+    caption: '墨镜单品最好的装饰者',
+    date: '2026-06',
+    alt: '合照'
+  },
+  {
+    src: '/my-blog/photo_1781746303997_2.jpg',
+    caption: '墨镜单品最好的装饰者',
+    date: '2026-06',
+    alt: '合照'
+  },
+  {
+    src: '/my-blog/photo_1781746308952_3.jpg',
+    caption: '墨镜单品最好的装饰者',
+    date: '2026-06',
+    alt: '合照'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
