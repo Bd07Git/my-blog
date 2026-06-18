@@ -190,6 +190,30 @@ const photos = [
     date: '2026-05',
     alt: '合照'
   },
+  {
+    src: '/my-blog/photo_1781745968968_0.jpg',
+    caption: '炸药包&黑哥',
+    date: '2026-06',
+    alt: 'solo'
+  },
+  {
+    src: '/my-blog/photo_1781745976510_1.jpg',
+    caption: '炸药包&黑哥',
+    date: '2026-06',
+    alt: 'solo'
+  },
+  {
+    src: '/my-blog/photo_1781745983931_2.jpg',
+    caption: '炸药包&黑哥',
+    date: '2026-06',
+    alt: 'solo'
+  },
+  {
+    src: '/my-blog/photo_1781746014348_3.jpg',
+    caption: '炸药包&黑哥',
+    date: '2026-06',
+    alt: 'solo'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
