@@ -256,6 +256,12 @@ const photos = [
     date: '2026-07',
     alt: '合照'
   },
+  {
+    src: '/my-blog/photo_1783985507560_0.jpeg',
+    caption: '我不知道您怎么了',
+    date: '2026-07',
+    alt: 'solo'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
