@@ -244,6 +244,12 @@ const photos = [
     date: '2026-07',
     alt: 'solo'
   },
+  {
+    src: '/my-blog/photo_1783984795070_0.jpeg',
+    caption: '成年人的浪漫',
+    date: '2026-07',
+    alt: '合照'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
