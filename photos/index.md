@@ -262,6 +262,60 @@ const photos = [
     date: '2026-07',
     alt: 'solo'
   },
+  {
+    src: '/my-blog/photo_1784298856862_0.jpg',
+    caption: '哈哈哈哈哈哈哈',
+    date: '2026-07',
+    alt: 'Solute'
+  },
+  {
+    src: '/my-blog/photo_1784298861572_1.jpg',
+    caption: '哈哈哈哈哈哈哈',
+    date: '2026-07',
+    alt: 'Solute'
+  },
+  {
+    src: '/my-blog/photo_1784298868108_2.jpg',
+    caption: '哈哈哈哈哈哈哈',
+    date: '2026-07',
+    alt: 'Solute'
+  },
+  {
+    src: '/my-blog/photo_1784298873055_3.jpg',
+    caption: '哈哈哈哈哈哈哈',
+    date: '2026-07',
+    alt: 'Solute'
+  },
+  {
+    src: '/my-blog/photo_1784298877456_4.jpg',
+    caption: '哈哈哈哈哈哈哈',
+    date: '2026-07',
+    alt: 'Solute'
+  },
+  {
+    src: '/my-blog/photo_1784298883497_5.jpg',
+    caption: '哈哈哈哈哈哈哈',
+    date: '2026-07',
+    alt: 'Solute'
+  },
+  {
+    src: '/my-blog/photo_1784298888708_6.jpg',
+    caption: '哈哈哈哈哈哈哈',
+    date: '2026-07',
+    alt: 'Solute'
+  },
+  {
+    src: '/my-blog/photo_1784298894241_7.jpg',
+    caption: '哈哈哈哈哈哈哈',
+    date: '2026-07',
+    alt: 'Solute'
+  },
+  {
+    src: '/my-blog/photo_1784298900184_8.jpg',
+    caption: '哈哈哈哈哈哈哈',
+    date: '2026-07',
+    alt: 'Solute'
+  },
   // 在这里继续添加更多图片，格式如下：
   // {
   //   src: '/my-blog/your-image.jpg',
